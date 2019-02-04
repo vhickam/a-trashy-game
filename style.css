@@ -1,0 +1,97 @@
+#game-container{
+  width: 100%;
+  height: 70%;
+  float: left;
+  background-color: #70B042;
+}
+body{
+  width: 90vw;
+  height: 90vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+
+}
+.header{
+  width: 100%;
+  background-color:	#BCDEE7;
+}
+.dumpsters{
+  height: 30%;
+  width: 100%;
+ background-image: url('sidewalk-edited.png');
+ background-size: contain;
+  display: flex;
+  justify-content: space-evenly;
+}
+h1{
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+.dump{
+  width: 20vw;
+  height: 100%;
+  float: left;
+
+}
+.dump-img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.images{
+  width: 50%;
+  height: 50%;
+  float: left;
+}
+
+.test-div{
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  float: left;
+
+}
+
+.hover{
+  filter: drop-shadow(0 0 5px green);
+  z-index: -1;
+}
+
+
+
+
+
+ .square{
+   position: absolute;
+   background-color: white;
+   height: 20px;
+   width: 20px;
+ }
+
+
+
+ @media (max-width: 480px) {
+  .dumpsters{
+   background-repeat: no-repeat;
+   height: 15%;
+  }
+
+  .dump{
+    height: 100%;
+  }
+
+  #game-container{
+    width: 100%;
+    height: 70%;
+    float: left;
+    background-color: #70B042;
+  }
+ }
