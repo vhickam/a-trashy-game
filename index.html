@@ -12,6 +12,9 @@
   
 </head>
 <body>
+    <div class="in-game-message">
+        <p></p>
+      </div>
 
     <div id="dialog-message" title="A Trashy Game">
         <p>
@@ -21,12 +24,27 @@
         </p>
         
       </div>
+      <div id="newlevel-message" title="Level Up!">
+          <p>
+           
+            Congratulations! You beat the level. Do you want to continue to the next level?
+          </p>
+          
+        </div>
+        <div id="end-game" title="You Lose">
+          <p>You put too many items in the wrong bin, your time ran out, or the world heated up before you
+          cleaned it.</p>
+        </div>
+        <div id="win" title="You Won!">
+            <p>Thanks for playing! Now go really make a difference and pick up trash outside:)</p>
+          </div>
 
   <div class="header">
     <center><h1 class="title">A TRASHY GAME</h1></center>
     <div class="points">
-        <div class="specs"> <h3 id="time"> 0</h3> </div>
-        <div class="specs"> <h3 id="points">0</h3> </div>
+        <div class="specs"><h3 id="level">1</h3></div>
+        <div class="specs"><h3 id="time"> 0</h3> </div>
+        <div class="specs"><h3 id="points">0</h3> </div>
       </div>
   </div>
   
@@ -40,15 +58,6 @@
         </div>
   </div>
   <div id="game-container">
-    <!-- <div class="trash images">
-      <img src="trash.png" class="trash-img img">
-    </div> -->
-    
-    <!-- <div class="trash images">
-      <img src="trash.png" class="trash-img img">
-    </div> -->
-
-    <!-- <div class="box"></div> -->
     
   </div>
   
@@ -58,7 +67,9 @@
 
   <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="resources.js"></script>
   <script src="myjs.js"></script>
+  
 
   
  
