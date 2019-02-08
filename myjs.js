@@ -23,10 +23,11 @@ var recAudio = new Audio('audio/recycle.mp3');
           modal: true,
           buttons: {
             Start: function() {
+              level ++;
               $( this ).dialog( "close" );
               callTimer(15);
               makeTrash(5, trashArray1);
-              level ++;
+              
               
             }
           }
@@ -43,26 +44,32 @@ function levelPopup(){
             clearInterval(timerInt);
              $('#game-container').empty();
             display.text('0');
-            if (level < 2){
+            if (level == 2){
               i = 0;
               callTimer(20);
               makeTrash(10, trashArray2);
               trashTarget = 10;
-              level++;
+            
             }
-            else if (level < 3){
+            else if (level == 3){
+              $('.dumpsters').css("background-image", "url(night2.png)"); 
+              $('.header').css("background-color", "#1b1464");  
+              $('#game-container').css("background-color", "#006837");
               i=0;
               callTimer(30);
               makeTrash(15, trashArray3);
               trashTarget = 15;
-              level++;
+            
             }
-            else if (level < 4){
+            else if (level == 4){
+              $('.dumpsters').css("background-image", "url(night2.png)"); 
+              $('.header').css("background-color", "#1b1464");  
+              $('#game-container').css("background-color", "#006837");
               i=0;
-              callTimer(40);
+              callTimer(30);
               makeTrash(20, trashArray3);
               trashTarget = 20;
-              level++;
+              
             }
             
           },
@@ -186,7 +193,7 @@ function timeUpPopup(){
     myObj = [];
     var trashArray = trashArray;
     trashTarget = trashNum;
-    $('#level').text(level+1);// +1 bc off by one
+    $('#level').text(level);// +1 bc off by one
  
 
     setInterval(function(){
@@ -296,7 +303,7 @@ function timeUpPopup(){
   function beatLevel() {
     if(droppedObj == trashTarget && level < 4){
       levelPopup();
-      //level++;
+      level++;
     }
     else if (droppedObj == trashTarget && level == 4){
       winPopup();
