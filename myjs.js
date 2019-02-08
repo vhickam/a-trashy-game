@@ -68,10 +68,37 @@ function levelPopup(){
           },
           End: function() {
             $( this ).dialog( "close" );
+            location.reload();
           }
         }
 });
 };
+
+//TIME UP POPUP
+function timeUpPopup(){
+  if (droppedObj != trashTarget) {
+    clearInterval(timerInt);
+    $( "#out-of-time" ).dialog({
+          modal: true,
+          buttons: {
+            Try_Again: function() {
+              $( this ).dialog( "close" );
+              location.reload();
+          },
+          End: function() {
+            $( this ).dialog( "close" );
+            location.reload();
+          }
+        }
+    });
+  }
+  else{
+    clearInterval(timerInt);
+  }
+
+}
+
+
 
 
 
@@ -92,8 +119,8 @@ function levelPopup(){
             if (--timer < 0) {
                 //timer = duration;
                 //alert("You ran out of time!");
-                checkWrong(seconds);
-                clearInterval(timerInt);
+                timeUpPopup();
+                //clearInterval(timerInt);
             }
         }, 1000);
     }
@@ -159,7 +186,7 @@ function levelPopup(){
     myObj = [];
     var trashArray = trashArray;
     trashTarget = trashNum;
-    //$('#level').text(level+1);// +1 bc off by one
+    $('#level').text(level+1);// +1 bc off by one
  
 
     setInterval(function(){
@@ -230,8 +257,8 @@ function levelPopup(){
 
 
   //IF YOU GET 3 WRONG YOU DIE
-  function checkWrong(time){
-    if (wrong == 3 || time == 0){
+  function checkWrong(){
+    if (wrong == 3){
       // var playAgain = confirm("You contributed to global warming. - press Ok to play again & clear your name.");
       // if(playAgain == true){
       //   clearInterval(timerInt);
@@ -269,6 +296,7 @@ function levelPopup(){
   function beatLevel() {
     if(droppedObj == trashTarget && level < 4){
       levelPopup();
+      //level++;
     }
     else if (droppedObj == trashTarget && level == 4){
       winPopup();
