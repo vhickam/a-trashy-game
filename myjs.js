@@ -76,7 +76,7 @@ function levelPopup(){
 
 //TIME UP POPUP
 function timeUpPopup(){
-  if (droppedObj != trashTarget) {
+  if (droppedObj != trashTarget && wrong < 3) {
     clearInterval(timerInt);
     $( "#out-of-time" ).dialog({
           modal: true,
