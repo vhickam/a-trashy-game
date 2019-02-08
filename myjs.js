@@ -12,8 +12,12 @@ var points = 0;
 var wrong = 0;
 var level = 0;
 let msgCount = 0; // used in displayMessage()
-var trashAudio  = new Audio('audio/trash.mp3');
-var recAudio = new Audio('audio/recycle.mp3');
+// var trashAudio  = new Audio('audio/trash.mp3');
+// var recAudio = new Audio('audio/recycle.mp3');
+var correctAudio  = new Audio('audio/correct.mp3');
+var wrongAudio = new Audio('audio/wrong.mp3');
+var cheerAudio = new Audio('audio/cheer.mp3');
+var timeupAudio = new Audio('audio/zonk.mp3');
 
 
    //POPUP INSTRUCTIONS BOX & INITIALIZE FIRST LEVEL
@@ -36,10 +40,12 @@ var recAudio = new Audio('audio/recycle.mp3');
 
 //NEXT LEVEL POPUP
 function levelPopup(){
+  playAudio(cheerAudio);
   $( "#newlevel-message" ).dialog({
         modal: true,
         buttons: {
           Next: function() {
+            cheerAudio.pause();
             $( this ).dialog( "close" );
             clearInterval(timerInt);
              $('#game-container').empty();
@@ -74,6 +80,7 @@ function levelPopup(){
             
           },
           End: function() {
+            cheerAudio.pause();
             $( this ).dialog( "close" );
             location.reload();
           }
@@ -84,15 +91,18 @@ function levelPopup(){
 //TIME UP POPUP
 function timeUpPopup(){
   if (droppedObj != trashTarget && wrong < 3) {
+    playAudio(timeupAudio);
     clearInterval(timerInt);
     $( "#out-of-time" ).dialog({
           modal: true,
           buttons: {
             Try_Again: function() {
+              timeupAudio.pause();
               $( this ).dialog( "close" );
               location.reload();
           },
           End: function() {
+            timeupAudio.pause();
             $( this ).dialog( "close" );
             location.reload();
           }
@@ -238,12 +248,14 @@ function timeUpPopup(){
 //CHECK IF OBJECT DROPPED IS RECYCLABLE AND UPDATE POINTS
       function checkRecycling(){
         if(currentID.includes('trash')){
+          playAudio(wrongAudio);
           points--;
           wrong++;
           checkWrong();
           displayMessage(incorrect);
         }
         else if(currentID.includes('rec')){
+          playAudio(correctAudio);
           points++;
           displayMessage(motivation);
         }
@@ -252,9 +264,11 @@ function timeUpPopup(){
 //CHECK IF OBJECT DROPPED IS TRASH AND UPDATE POINTS
       function checkTrash(){
         if(currentID.includes('trash')){
+          playAudio(correctAudio);
           points++;
         }
         else if(currentID.includes('rec')){
+          playAudio(wrongAudio);
           points--;
           wrong++;
           checkWrong();
@@ -266,6 +280,7 @@ function timeUpPopup(){
   //IF YOU GET 3 WRONG YOU DIE
   function checkWrong(){
     if (wrong == 3){
+      playAudio(timeupAudio);
       // var playAgain = confirm("You contributed to global warming. - press Ok to play again & clear your name.");
       // if(playAgain == true){
       //   clearInterval(timerInt);
@@ -278,6 +293,7 @@ function timeUpPopup(){
       $("#end-game").dialog({
         buttons: {
           'Play Again': function() {
+            timeupAudio.pause();
             // clearInterval(timerInt);
             // display.text('0');
             // $('#game-container').empty()
@@ -292,6 +308,7 @@ function timeUpPopup(){
             location.reload();
           },
           'No': function() {
+            timeupAudio.pause();
             location.reload();
           }
         }
@@ -312,14 +329,17 @@ function timeUpPopup(){
 
   //WIN POPUP
   function winPopup(){
+    playAudio(cheerAudio);
     $( "#win" ).dialog({
           modal: true,
           buttons: {
             Play_Again: function() {
+              cheerAudio.pause();
               location.reload();
             },
             Finished: function(){
               location.reload();
+              cheerAudio.pause();
             }
           }
   });
@@ -333,7 +353,7 @@ function timeUpPopup(){
     
         drop: function(event, ui){
           currentID = ui.draggable.attr('id');
-          playAudio(recAudio);
+          //playAudio(recAudio);
           ui.draggable.hide();
           checkRecycling();
           droppedObj++;
@@ -349,7 +369,7 @@ function timeUpPopup(){
     
         drop: function(event, ui){
           currentID = ui.draggable.attr('id');
-          playAudio(trashAudio);
+          //playAudio(trashAudio);
           ui.draggable.hide();
           checkTrash();
           droppedObj++;
