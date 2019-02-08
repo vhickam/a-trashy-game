@@ -51,6 +51,25 @@ function levelPopup(){
              $('#game-container').empty();
             display.text('0');
             if (level == 2){
+              $('.recycle-dump').css({
+                'animation-duration': '3s',
+                'animation-name': 'moving',
+                'animation-iteration-count': 'infinite',
+                'animation-direction': 'alternate',
+                'position': 'absolute',
+                'width': '20vw',
+                'height': '25vh'
+              }); 
+
+              $('.trash-dump').css({
+                'animation-duration': '3s',
+                'animation-name': 'moving-trash',
+                'animation-iteration-count': 'infinite',
+                'animation-direction': 'alternate',
+                'position': 'absolute',
+                'width': '20vw',
+                'height': '25vh'
+              });
               i = 0;
               callTimer(20);
               makeTrash(10, trashArray2);
@@ -71,6 +90,27 @@ function levelPopup(){
               $('.dumpsters').css("background-image", "url(night2.png)"); 
               $('.header').css("background-color", "#1b1464");  
               $('#game-container').css("background-color", "#006837");
+
+              $('.recycle-dump').css({
+                'animation-duration': '2s',
+                'animation-name': 'moving',
+                'animation-iteration-count': 'infinite',
+                'animation-direction': 'alternate',
+                'position': 'absolute',
+                'width': '20vw',
+                'height': '25vh'
+              }); 
+
+              $('.trash-dump').css({
+                'animation-duration': '2s',
+                'animation-name': 'moving-trash',
+                'animation-iteration-count': 'infinite',
+                'animation-direction': 'alternate',
+                'position': 'absolute',
+                'width': '20vw',
+                'height': '25vh'
+              });
+
               i=0;
               callTimer(30);
               makeTrash(20, trashArray3);
@@ -92,6 +132,9 @@ function levelPopup(){
 function timeUpPopup(){
   if (droppedObj != trashTarget && wrong < 3) {
     playAudio(timeupAudio);
+   $('#game-container').empty();
+    $( "#trash-bin" ).droppable("disable");
+    $( "#recycling-bin" ).droppable("disable");
     clearInterval(timerInt);
     $( "#out-of-time" ).dialog({
           modal: true,

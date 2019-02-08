@@ -1,3 +1,5 @@
+
+
 .screen-size-warning{
   width: 100vh;
   width: 100vh;
@@ -155,8 +157,33 @@ h1{
 }
 
 
+/* .recycle-dump{
+  animation-duration: 3s;
+  animation-name: moving;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  position: absolute;
+  width: 20vw;
+  height: 25vh;
+} */
 
+@keyframes moving {
+  from {
+      left: 5%;
+  }
+  to {
+      left: 20%;
+  }
+}
 
+@keyframes moving-trash {
+  from {
+      left: 75%;
+  }
+  to {
+      left: 60%;
+  }
+}
 
  /* .square{
    position: absolute;
